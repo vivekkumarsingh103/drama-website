@@ -26,6 +26,9 @@
             background-color: var(--dark);
             color: var(--text);
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         
         .container {
@@ -54,6 +57,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            text-decoration: none;
         }
         
         .logo h1 {
@@ -117,6 +121,85 @@
         
         .search-bar button:hover {
             color: var(--primary);
+        }
+        
+        /* Main Content Layout */
+        .main-content {
+            display: flex;
+            flex: 1;
+            gap: 30px;
+            padding: 30px 0;
+        }
+        
+        .content-area {
+            flex: 1;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: 300px;
+            background-color: var(--dark-light);
+            border-radius: 12px;
+            padding: 25px;
+            height: fit-content;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sidebar-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .sidebar-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar-title i {
+            font-size: 20px;
+        }
+        
+        .sidebar-links {
+            list-style: none;
+        }
+        
+        .sidebar-links li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sidebar-links a:hover {
+            color: var(--primary);
+        }
+        
+        .sidebar-text {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .sidebar-text a {
+            color: var(--primary);
+            text-decoration: none;
         }
         
         /* Hero Section */
@@ -409,7 +492,32 @@
             font-size: 14px;
         }
         
+        .disclaimer {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                order: 2;
+            }
+            
+            .content-area {
+                order: 1;
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -471,10 +579,10 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-film"></i>
+                <a href="#" class="logo" id="home-link">
+                    <i class="fas fa-play-circle"></i>
                     <h1>Dramawallah</h1>
-                </div>
+                </a>
                 
                 <nav>
                     <ul>
@@ -503,194 +611,228 @@
     
     <!-- Main Content -->
     <div class="container">
-        <!-- Search Results Section -->
-        <section id="search-results" class="section">
-            <h2 class="section-title">Search Results</h2>
-            <div id="search-results-container" class="cards-grid">
-                <!-- Search results will be dynamically inserted here -->
-            </div>
-            <div id="no-results" class="no-results hidden">
-                <i class="fas fa-search"></i>
-                <h3>No results found</h3>
-                <p>Try different keywords or browse our categories</p>
-            </div>
-        </section>
-        
-        <!-- Home Section -->
-        <section id="home" class="section active-section">
-            <h2 class="section-title">Latest Releases</h2>
-            <div class="cards-grid">
-                <!-- Card 1 -->
-                <div class="card" data-title="The Last Kingdom" data-description="As Alfred the Great defends his kingdom from Norse invaders, Uhtred—born a Saxon but raised by Vikings—seeks to claim his ancestral birthright." data-year="2015" data-rating="8.4">
-                    <div class="poster"></div>
-                    <div class="content">
-                        <h3 class="title">The Last Kingdom</h3>
-                        <div class="rating">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">☆</span>
+        <div class="main-content">
+            <div class="content-area">
+                <!-- Search Results Section -->
+                <section id="search-results" class="section">
+                    <h2 class="section-title">Search Results</h2>
+                    <div id="search-results-container" class="cards-grid">
+                        <!-- Search results will be dynamically inserted here -->
+                    </div>
+                    <div id="no-results" class="no-results hidden">
+                        <i class="fas fa-search"></i>
+                        <h3>No results found</h3>
+                        <p>Try different keywords or browse our categories</p>
+                    </div>
+                </section>
+                
+                <!-- Home Section -->
+                <section id="home" class="section active-section">
+                    <h2 class="section-title">Latest Releases</h2>
+                    <div class="cards-grid">
+                        <!-- Card 1 -->
+                        <div class="card" data-title="The Last Kingdom" data-description="As Alfred the Great defends his kingdom from Norse invaders, Uhtred—born a Saxon but raised by Vikings—seeks to claim his ancestral birthright." data-year="2015" data-rating="8.4">
+                            <div class="poster"></div>
+                            <div class="content">
+                                <h3 class="title">The Last Kingdom</h3>
+                                <div class="rating">
+                                    <div class="stars">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">☆</span>
+                                    </div>
+                                    <span class="rating-value">8.4/10</span>
+                                </div>
+                                <p class="description">As Alfred the Great defends his kingdom from Norse invaders, Uhtred—born a Saxon but raised by Vikings—seeks to claim his ancestral birthright.</p>
+                                <div class="meta">
+                                    <span class="year">2015</span>
+                                    <span class="quality">HD</span>
+                                    <span class="size">1.26 GB</span>
+                                </div>
+                                <button class="download-btn">Download Now</button>
                             </div>
-                            <span class="rating-value">8.4/10</span>
                         </div>
-                        <p class="description">As Alfred the Great defends his kingdom from Norse invaders, Uhtred—born a Saxon but raised by Vikings—seeks to claim his ancestral birthright.</p>
-                        <div class="meta">
-                            <span class="year">2015</span>
-                            <span class="quality">HD</span>
-                            <span class="size">1.26 GB</span>
+                        
+                        <!-- Card 2 -->
+                        <div class="card" data-title="Stranger Things" data-description="When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl." data-year="2016" data-rating="8.7">
+                            <div class="poster"></div>
+                            <div class="content">
+                                <h3 class="title">Stranger Things</h3>
+                                <div class="rating">
+                                    <div class="stars">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">☆</span>
+                                    </div>
+                                    <span class="rating-value">8.7/10</span>
+                                </div>
+                                <p class="description">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.</p>
+                                <div class="meta">
+                                    <span class="year">2016</span>
+                                    <span class="quality">4K</span>
+                                    <span class="size">2.45 GB</span>
+                                </div>
+                                <button class="download-btn">Download Now</button>
+                            </div>
                         </div>
-                        <button class="download-btn">Download Now</button>
+                        
+                        <!-- Card 3 -->
+                        <div class="card" data-title="The Witcher" data-description="Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts." data-year="2019" data-rating="8.2">
+                            <div class="poster"></div>
+                            <div class="content">
+                                <h3 class="title">The Witcher</h3>
+                                <div class="rating">
+                                    <div class="stars">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">☆</span>
+                                    </div>
+                                    <span class="rating-value">8.2/10</span>
+                                </div>
+                                <p class="description">Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.</p>
+                                <div class="meta">
+                                    <span class="year">2019</span>
+                                    <span class="quality">HD</span>
+                                    <span class="size">1.68 GB</span>
+                                </div>
+                                <button class="download-btn">Download Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Ongoing Section -->
+                <section id="ongoing" class="section">
+                    <h2 class="section-title">Ongoing Dramas</h2>
+                    <div class="cards-grid">
+                        <!-- Ongoing Card 1 -->
+                        <div class="card" data-title="The Mandalorian" data-description="The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic." data-year="2019" data-rating="8.8">
+                            <div class="poster"></div>
+                            <div class="content">
+                                <h3 class="title">The Mandalorian</h3>
+                                <div class="rating">
+                                    <div class="stars">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                    </div>
+                                    <span class="rating-value">8.8/10</span>
+                                </div>
+                                <p class="description">The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic.</p>
+                                <div class="meta">
+                                    <span class="year">2019</span>
+                                    <span class="quality">4K</span>
+                                    <span class="size">2.1 GB</span>
+                                </div>
+                                <button class="download-btn">Download Now</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Ongoing Card 2 -->
+                        <div class="card" data-title="Loki" data-description="The mercurial villain Loki resumes his role as the God of Mischief in a new series that takes place after the events of 'Avengers: Endgame.'" data-year="2021" data-rating="8.2">
+                            <div class="poster"></div>
+                            <div class="content">
+                                <h3 class="title">Loki</h3>
+                                <div class="rating">
+                                    <div class="stars">
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">★</span>
+                                        <span class="star">☆</span>
+                                    </div>
+                                    <span class="rating-value">8.2/10</span>
+                                </div>
+                                <p class="description">The mercurial villain Loki resumes his role as the God of Mischief in a new series that takes place after the events of "Avengers: Endgame."</p>
+                                <div class="meta">
+                                    <span class="year">2021</span>
+                                    <span class="quality">HD</span>
+                                    <span class="size">1.5 GB</span>
+                                </div>
+                                <button class="download-btn">Download Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- News Section -->
+                <section id="news" class="section">
+                    <h2 class="section-title">Latest News</h2>
+                    <div class="news-grid">
+                        <!-- News 1 -->
+                        <div class="news-card">
+                            <div class="news-image">NEWS IMAGE</div>
+                            <div class="news-content">
+                                <h3 class="news-title">New Season of Stranger Things Announced</h3>
+                                <div class="news-date">June 15, 2023</div>
+                                <p class="news-excerpt">Netflix has officially announced the release date for the final season of Stranger Things. Fans are excited to see how the story concludes.</p>
+                                <a href="#" class="read-more">Read More →</a>
+                            </div>
+                        </div>
+                        
+                        <!-- News 2 -->
+                        <div class="news-card">
+                            <div class="news-image">NEWS IMAGE</div>
+                            <div class="news-content">
+                                <h3 class="news-title">Upcoming Movie Releases in 2023</h3>
+                                <div class="news-date">June 10, 2023</div>
+                                <p class="news-excerpt">Check out our list of the most anticipated movie releases for the remainder of 2023, including major blockbusters and indie gems.</p>
+                                <a href="#" class="read-more">Read More →</a>
+                            </div>
+                        </div>
+                        
+                        <!-- News 3 -->
+                        <div class="news-card">
+                            <div class="news-image">NEWS IMAGE</div>
+                            <div class="news-content">
+                                <h3 class="news-title">Streaming Services Comparison</h3>
+                                <div class="news-date">June 5, 2023</div>
+                                <p class="news-excerpt">We compare the top streaming services to help you decide which one is right for your entertainment needs and budget.</p>
+                                <a href="#" class="read-more">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title"><i class="fas fa-headset"></i> Contact & Support</h3>
+                    <ul class="sidebar-links">
+                        <li><a href="https://t.me/dwcontactXbot?start=" target="_blank"><i class="fab fa-telegram"></i> Contact Bot</a></li>
+                        <li><a href="mailto:dramawallahcontact@gmail.com"><i class="fas fa-envelope"></i> Report Issue</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title"><i class="fas fa-gavel"></i> DMCA & Legal</h3>
+                    <div class="sidebar-text">
+                        <p>All parts of the Dramawallah website are for private use only.</p>
+                        <p>No files are hosted on our server. All contents are provided by non-affiliated third parties. They are only indexed much like how Google works.</p>
+                        <p>Dramawallah does not accept responsibility for content hosted on third party websites and does not have any involvement in the downloading/uploading of tvshow/movies. We just post links available in internet.</p>
                     </div>
                 </div>
                 
-                <!-- Card 2 -->
-                <div class="card" data-title="Stranger Things" data-description="When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl." data-year="2016" data-rating="8.7">
-                    <div class="poster"></div>
-                    <div class="content">
-                        <h3 class="title">Stranger Things</h3>
-                        <div class="rating">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">☆</span>
-                            </div>
-                            <span class="rating-value">8.7/10</span>
-                        </div>
-                        <p class="description">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.</p>
-                        <div class="meta">
-                            <span class="year">2016</span>
-                            <span class="quality">4K</span>
-                            <span class="size">2.45 GB</span>
-                        </div>
-                        <button class="download-btn">Download Now</button>
-                    </div>
-                </div>
-                
-                <!-- Card 3 -->
-                <div class="card" data-title="The Witcher" data-description="Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts." data-year="2019" data-rating="8.2">
-                    <div class="poster"></div>
-                    <div class="content">
-                        <h3 class="title">The Witcher</h3>
-                        <div class="rating">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">☆</span>
-                            </div>
-                            <span class="rating-value">8.2/10</span>
-                        </div>
-                        <p class="description">Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.</p>
-                        <div class="meta">
-                            <span class="year">2019</span>
-                            <span class="quality">HD</span>
-                            <span class="size">1.68 GB</span>
-                        </div>
-                        <button class="download-btn">Download Now</button>
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title"><i class="fas fa-info-circle"></i> Disclaimer</h3>
+                    <div class="sidebar-text">
+                        <p>This site merely indexes of other site's contents. The hosting server or the administrator cannot be held responsible for the contents of any linked sites or any link contained in a linked site, or changes / updates to such sites. All materials on this website is for Educational Purposes ONLY.</p>
+                        <p>For any copyright issues, you should contact the hosters files site's itself.</p>
+                        <p>If you still have or need further information please send me PM through contact page.</p>
+                        <p>Please allow 3-5 business days for an email response: <a href="mailto:dramawallahcontact@gmail.com">dramawallahcontact@gmail.com</a></p>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- Ongoing Section -->
-        <section id="ongoing" class="section">
-            <h2 class="section-title">Ongoing Dramas</h2>
-            <div class="cards-grid">
-                <!-- Ongoing Card 1 -->
-                <div class="card" data-title="The Mandalorian" data-description="The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic." data-year="2019" data-rating="8.8">
-                    <div class="poster"></div>
-                    <div class="content">
-                        <h3 class="title">The Mandalorian</h3>
-                        <div class="rating">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                            <span class="rating-value">8.8/10</span>
-                        </div>
-                        <p class="description">The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic.</p>
-                        <div class="meta">
-                            <span class="year">2019</span>
-                            <span class="quality">4K</span>
-                            <span class="size">2.1 GB</span>
-                        </div>
-                        <button class="download-btn">Download Now</button>
-                    </div>
-                </div>
-                
-                <!-- Ongoing Card 2 -->
-                <div class="card" data-title="Loki" data-description="The mercurial villain Loki resumes his role as the God of Mischief in a new series that takes place after the events of 'Avengers: Endgame.'" data-year="2021" data-rating="8.2">
-                    <div class="poster"></div>
-                    <div class="content">
-                        <h3 class="title">Loki</h3>
-                        <div class="rating">
-                            <div class="stars">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">☆</span>
-                            </div>
-                            <span class="rating-value">8.2/10</span>
-                        </div>
-                        <p class="description">The mercurial villain Loki resumes his role as the God of Mischief in a new series that takes place after the events of "Avengers: Endgame."</p>
-                        <div class="meta">
-                            <span class="year">2021</span>
-                            <span class="quality">HD</span>
-                            <span class="size">1.5 GB</span>
-                        </div>
-                        <button class="download-btn">Download Now</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- News Section -->
-        <section id="news" class="section">
-            <h2 class="section-title">Latest News</h2>
-            <div class="news-grid">
-                <!-- News 1 -->
-                <div class="news-card">
-                    <div class="news-image">NEWS IMAGE</div>
-                    <div class="news-content">
-                        <h3 class="news-title">New Season of Stranger Things Announced</h3>
-                        <div class="news-date">June 15, 2023</div>
-                        <p class="news-excerpt">Netflix has officially announced the release date for the final season of Stranger Things. Fans are excited to see how the story concludes.</p>
-                        <a href="#" class="read-more">Read More →</a>
-                    </div>
-                </div>
-                
-                <!-- News 2 -->
-                <div class="news-card">
-                    <div class="news-image">NEWS IMAGE</div>
-                    <div class="news-content">
-                        <h3 class="news-title">Upcoming Movie Releases in 2023</h3>
-                        <div class="news-date">June 10, 2023</div>
-                        <p class="news-excerpt">Check out our list of the most anticipated movie releases for the remainder of 2023, including major blockbusters and indie gems.</p>
-                        <a href="#" class="read-more">Read More →</a>
-                    </div>
-                </div>
-                
-                <!-- News 3 -->
-                <div class="news-card">
-                    <div class="news-image">NEWS IMAGE</div>
-                    <div class="news-content">
-                        <h3 class="news-title">Streaming Services Comparison</h3>
-                        <div class="news-date">June 5, 2023</div>
-                        <p class="news-excerpt">We compare the top streaming services to help you decide which one is right for your entertainment needs and budget.</p>
-                        <a href="#" class="read-more">Read More →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </div>
     
     <!-- Footer -->
@@ -705,10 +847,9 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Ongoing Dramas</a></li>
-                        <li><a href="#">Latest Movies</a></li>
-                        <li><a href="#">News</a></li>
+                        <li><a href="#" class="nav-link" data-section="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-section="ongoing">Ongoing Dramas</a></li>
+                        <li><a href="#" class="nav-link" data-section="news">News</a></li>
                     </ul>
                 </div>
                 
@@ -725,11 +866,14 @@
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Feedback</a></li>
-                        <li><a href="#">Report Issue</a></li>
+                        <li><a href="https://t.me/dwcontactXbot?start=" target="_blank">Telegram Bot</a></li>
+                        <li><a href="mailto:dramawallahcontact@gmail.com">Email Support</a></li>
                     </ul>
                 </div>
+            </div>
+            
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> This site Dramawallah does not host any files on its servers. All files or contents hosted on third party websites. Dramawallah does not accept responsibility for contents hosted on third party websites. We just index those links which are already available in internet.</p>
             </div>
             
             <div class="copyright">
@@ -746,6 +890,20 @@
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('.section');
+            const homeLink = document.getElementById('home-link');
+            
+            // Home logo link functionality
+            homeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                navLinks.forEach(item => item.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active-section'));
+                
+                // Add active class to home link and section
+                document.querySelector('.nav-link[data-section="home"]').classList.add('active');
+                document.getElementById('home').classList.add('active-section');
+            });
             
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
