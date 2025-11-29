@@ -843,6 +843,15 @@
                     <h3>Dramawallah</h3>
                     <p>Your ultimate destination for HD dramas and movies. Download or stream your favorite content in high quality.</p>
                 </div>
+                <div class="footer-column">
+    <h3>Legal</h3>
+    <ul>
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/cookies">Cookie Policy</a></li>
+        <li><a href="/terms">Terms of Service</a></li>
+        <li><a href="/dmca">DMCA</a></li>
+    </ul>
+</div>
                 
                 <div class="footer-column">
                     <h3>Quick Links</h3>
@@ -1013,8 +1022,62 @@
                 if (index < ratings.length) {
                     element.innerHTML = generateStars(ratings[index]);
                 }
-            });
-        });
-    </script>
+                <!-- Cookie Consent Banner -->
+<div id="cookie-consent" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #1a1f25; color: white; padding: 20px; box-shadow: 0 -2px 10px rgba(0,0,0,0.3); z-index: 1000; border-top: 2px solid #3a86ff;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+        <p style="margin: 0; flex: 1; min-width: 300px; font-size: 14px; line-height: 1.5;">
+            🍪 We use cookies to personalize content and ads, and to analyze our traffic. 
+            By continuing to use our site, you consent to our use of cookies.
+        </p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button id="accept-cookies" style="background: #3a86ff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: 600;">
+                Accept All
+            </button>
+            <button id="reject-cookies" style="background: transparent; color: #3a86ff; border: 1px solid #3a86ff; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px;">
+                Reject Non-Essential
+            </button>
+            <a href="/privacy" style="color: #3a86ff; text-decoration: none; padding: 10px 0; font-size: 14px; align-self: center;">
+                Learn More
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+// Cookie consent functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const cookieBanner = document.getElementById('cookie-consent');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const rejectBtn = document.getElementById('reject-cookies');
+    
+    // Check if user has already made a choice
+    if (!localStorage.getItem('cookieConsent')) {
+        setTimeout(() => {
+            cookieBanner.style.display = 'block';
+        }, 1000);
+    }
+    
+    // Accept cookies
+    acceptBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        cookieBanner.style.display = 'none';
+        // Initialize AdSense and other tracking here
+        initializeAdSense();
+    });
+    
+    // Reject non-essential cookies
+    rejectBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'rejected');
+        cookieBanner.style.display = 'none';
+        // Only load essential functionality (no ads)
+    });
+    
+    function initializeAdSense() {
+        // This is where you'll add AdSense code later
+        console.log('AdSense initialized - add your AdSense code here');
+    }
+});
+</script>
+
 </body>
 </html>
