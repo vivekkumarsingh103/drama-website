@@ -3,7 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dramawallah - HD Dramas & Movies</title>
+    <title>Dramawallah - HD Dramas & Movies Download | Latest TV Shows 2024</title>
+    <meta name="description" content="Download latest HD dramas, movies and TV shows for free. Dramawallah offers Stranger Things, The Witcher, The Last Kingdom and more in HD quality with fast downloads.">
+    <meta name="keywords" content="HD dramas download, movies download free, TV shows, entertainment website, streaming movies, download series, HD quality movies, free entertainment, watch online dramas">
+    <meta name="author" content="Dramawallah">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Dramawallah - HD Dramas & Movies Download | Latest TV Shows">
+    <meta property="og:description" content="Download latest HD dramas, movies and TV shows for free. High quality entertainment with regular updates.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dramawallah.netlify.app/">
+    <meta property="og:image" content="https://dramawallah.netlify.app/og-image.jpg">
+    <meta property="og:site_name" content="Dramawallah">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dramawallah - HD Dramas & Movies Download">
+    <meta name="twitter:description" content="Download latest HD dramas, movies and TV shows for free.">
+    <meta name="twitter:image" content="https://dramawallah.netlify.app/twitter-image.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dramawallah.netlify.app/">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Dramawallah",
+        "url": "https://dramawallah.netlify.app/",
+        "description": "HD Dramas & Movies Download - Latest TV Shows and Entertainment",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://dramawallah.netlify.app/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Dramawallah",
+        "url": "https://dramawallah.netlify.app/",
+        "logo": "https://dramawallah.netlify.app/logo.png",
+        "description": "Premium HD Dramas and Movies Download Website"
+    }
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -123,6 +176,22 @@
             color: var(--primary);
         }
         
+        /* Breadcrumb */
+        .breadcrumb {
+            margin: 20px 0;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .breadcrumb span {
+            margin: 0 8px;
+        }
+        
         /* Main Content Layout */
         .main-content {
             display: flex;
@@ -133,6 +202,44 @@
         
         .content-area {
             flex: 1;
+        }
+        
+        /* SEO Content Section */
+        .seo-content {
+            margin: 40px 0;
+            line-height: 1.8;
+        }
+        
+        .keyword-section {
+            background: var(--dark-light);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+        
+        .keyword-section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .keyword-section h3 {
+            color: var(--text);
+            margin: 25px 0 15px 0;
+            font-size: 22px;
+        }
+        
+        .keyword-section ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .keyword-section li {
+            margin-bottom: 10px;
+        }
+        
+        .keyword-section strong {
+            color: var(--primary);
         }
         
         /* Sidebar Styles */
@@ -268,6 +375,7 @@
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
         }
         
         .card:hover {
@@ -285,6 +393,8 @@
             color: var(--text-light);
             font-size: 16px;
             position: relative;
+            background-size: cover;
+            background-position: center;
         }
         
         .poster::after {
@@ -613,6 +723,14 @@
             .cookie-text {
                 min-width: 100%;
             }
+            
+            .keyword-section h2 {
+                font-size: 24px;
+            }
+            
+            .keyword-section h3 {
+                font-size: 20px;
+            }
         }
         
         /* Hidden sections */
@@ -674,12 +792,52 @@
         </div>
     </header>
     
+    <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#" data-section="home">Home</a>
+            <span>></span>
+            <span id="current-page">Latest Releases</span>
+        </div>
+    </div>
+    
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h2>HD Dramas & Movies</h2>
+            <h1>HD Dramas & Movies Download</h1>
             <p>Discover the latest and greatest in entertainment. Stream or download your favorite shows in high quality.</p>
             <a href="#" class="cta-button">Explore Now</a>
+        </div>
+    </section>
+    
+    <!-- SEO Content Section -->
+    <section class="seo-content">
+        <div class="container">
+            <div class="keyword-section">
+                <h2>Download HD Dramas & Movies - Dramawallah</h2>
+                <p>Welcome to <strong>Dramawallah</strong>, your premier destination for downloading <strong>HD dramas, movies, and TV shows</strong>. We offer the latest entertainment content including popular series like <strong>Stranger Things, The Witcher, The Last Kingdom</strong>, and many more ongoing dramas. Our platform is optimized for fast downloads and high-quality streaming.</p>
+                
+                <h3>Why Choose Dramawallah for Your Entertainment?</h3>
+                <ul>
+                    <li><strong>High-Quality Downloads</strong> - All content available in HD and 4K quality with excellent video and audio</li>
+                    <li><strong>Regular Updates</strong> - New episodes and movies added daily to keep you entertained</li>
+                    <li><strong>Fast Download Speeds</strong> - No waiting time with our optimized servers</li>
+                    <li><strong>Multiple Categories</strong> - Action, Drama, Comedy, Thriller, Romance and more genres</li>
+                    <li><strong>Mobile Friendly</strong> - Download on any device including smartphones and tablets</li>
+                    <li><strong>User-Friendly Interface</strong> - Easy navigation and search functionality</li>
+                </ul>
+                
+                <h3>Popular Categories and Genres</h3>
+                <p>Browse our extensive collection of <strong>TV dramas, Hollywood movies, Bollywood films, and web series</strong>. We specialize in providing the latest entertainment content with fast download links and excellent video quality. Whether you're looking for the latest episode of your favorite series or classic movies, Dramawallah has you covered.</p>
+                
+                <h3>Latest Entertainment Updates</h3>
+                <p>Stay updated with the newest drama releases and movie downloads. Our team works continuously to bring you the best entertainment content from around the world. From blockbuster movies to critically acclaimed TV series, we ensure you never miss out on the latest in entertainment.</p>
+                
+                <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; margin-top: 20px;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px;">Quality Guarantee</h4>
+                    <p>At Dramawallah, we prioritize quality and user experience. All our content is carefully selected and verified to ensure the best viewing experience. Our download links are regularly checked and updated to provide seamless access to your favorite entertainment.</p>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -1052,6 +1210,13 @@
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('.section');
             const homeLink = document.getElementById('home-link');
+            const currentPage = document.getElementById('current-page');
+            const breadcrumbLinks = document.querySelectorAll('.breadcrumb a');
+            
+            // Update breadcrumb
+            function updateBreadcrumb(sectionName) {
+                currentPage.textContent = sectionName;
+            }
             
             // Home logo link functionality
             homeLink.addEventListener('click', function(e) {
@@ -1064,6 +1229,7 @@
                 // Add active class to home link and section
                 document.querySelector('.nav-link[data-section="home"]').classList.add('active');
                 document.getElementById('home').classList.add('active-section');
+                updateBreadcrumb('Latest Releases');
             });
             
             navLinks.forEach(link => {
@@ -1080,6 +1246,24 @@
                     // Show corresponding section
                     const sectionId = this.getAttribute('data-section');
                     document.getElementById(sectionId).classList.add('active-section');
+                    
+                    // Update breadcrumb
+                    const sectionNames = {
+                        'home': 'Latest Releases',
+                        'ongoing': 'Ongoing Dramas',
+                        'news': 'Latest News',
+                        'privacy': 'Privacy Policy'
+                    };
+                    updateBreadcrumb(sectionNames[sectionId]);
+                });
+            });
+            
+            // Breadcrumb navigation
+            breadcrumbLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetSection = this.getAttribute('data-section');
+                    document.querySelector(`.nav-link[data-section="${targetSection}"]`).click();
                 });
             });
             
@@ -1116,6 +1300,7 @@
                 
                 // Update active nav link
                 navLinks.forEach(link => link.classList.remove('active'));
+                updateBreadcrumb(`Search Results for "${query}"`);
                 
                 // Clear previous search results
                 searchResultsContainer.innerHTML = '';
