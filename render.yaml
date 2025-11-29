@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: dramawallah-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        fromSecret: bot_token
+      - key: MONGODB_URI
+        fromSecret: mongodb_uri
+      - key: ADMIN_ID
+        fromSecret: admin_id
