@@ -502,6 +502,70 @@
             line-height: 1.5;
         }
         
+        /* Cookie Consent Banner */
+        .cookie-banner {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark-light);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            border-top: 2px solid var(--primary);
+        }
+        
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .cookie-text {
+            margin: 0;
+            flex: 1;
+            min-width: 300px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .cookie-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .cookie-btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .cookie-link {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 10px 0;
+            font-size: 14px;
+            align-self: center;
+        }
+        
         /* Responsive Design */
         @media (max-width: 1024px) {
             .main-content {
@@ -539,6 +603,15 @@
             
             .hero p {
                 font-size: 16px;
+            }
+            
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cookie-text {
+                min-width: 100%;
             }
         }
         
@@ -589,6 +662,7 @@
                         <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
                         <li><a href="#" class="nav-link" data-section="ongoing">Ongoing</a></li>
                         <li><a href="#" class="nav-link" data-section="news">News</a></li>
+                        <li><a href="#" class="nav-link" data-section="privacy">Privacy</a></li>
                     </ul>
                 </nav>
                 
@@ -801,6 +875,77 @@
                         </div>
                     </div>
                 </section>
+                
+                <!-- Privacy Policy Section -->
+                <section id="privacy" class="section">
+                    <div class="container">
+                        <h2 class="section-title">Privacy Policy & Cookie Policy</h2>
+                        
+                        <div class="privacy-content" style="background: var(--dark-light); padding: 30px; border-radius: 12px; line-height: 1.8;">
+                            
+                            <h3 style="color: var(--primary); margin: 25px 0 15px 0;">1. Information We Collect</h3>
+                            <p>We may collect the following types of information:</p>
+                            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                                <li>Browser type and version</li>
+                                <li>IP address</li>
+                                <li>Pages visited and time spent on site</li>
+                                <li>Referring website</li>
+                            </ul>
+
+                            <h3 style="color: var(--primary); margin: 25px 0 15px 0;">2. Cookies We Use</h3>
+                            <p>Our website uses the following types of cookies:</p>
+                            
+                            <h4 style="color: var(--text); margin: 20px 0 10px 0;">Essential Cookies</h4>
+                            <p>These are necessary for the website to function properly:</p>
+                            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                                <li>Cookie consent preferences</li>
+                                <li>Session management</li>
+                            </ul>
+
+                            <h4 style="color: var(--text); margin: 20px 0 10px 0;">Analytics Cookies</h4>
+                            <p>These help us understand how visitors interact with our website:</p>
+                            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                                <li>Google Analytics</li>
+                                <li>Traffic analysis</li>
+                            </ul>
+
+                            <h4 style="color: var(--text); margin: 20px 0 10px 0;">Advertising Cookies</h4>
+                            <p>These are used to serve relevant advertisements:</p>
+                            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                                <li>Google AdSense cookies</li>
+                                <li>Personalized ads</li>
+                                <li>Ad frequency capping</li>
+                            </ul>
+
+                            <h3 style="color: var(--primary); margin: 25px 0 15px 0;">3. How We Use Cookies</h3>
+                            <p>Cookies help us to:</p>
+                            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                                <li>Improve website functionality</li>
+                                <li>Personalize content and ads</li>
+                                <li>Provide social media features</li>
+                                <li>Analyze our traffic</li>
+                            </ul>
+
+                            <h3 style="color: var(--primary); margin: 25px 0 15px 0;">4. Third-Party Cookies</h3>
+                            <p>We use third-party services that may set cookies:</p>
+                            <ul style="margin-left: 20px; margin-bottom: 20px;">
+                                <li><strong>Google AdSense:</strong> For serving advertisements</li>
+                                <li><strong>Google Analytics:</strong> For website analytics</li>
+                            </ul>
+
+                            <h3 style="color: var(--primary); margin: 25px 0 15px 0;">5. Managing Cookies</h3>
+                            <p>You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and you can set most browsers to prevent them from being placed.</p>
+                            
+                            <h3 style="color: var(--primary); margin: 25px 0 15px 0;">6. Contact Information</h3>
+                            <p>If you have any questions about our Privacy Policy or Cookie Policy, please contact us at:</p>
+                            <p>Email: <a href="mailto:dramawallahcontact@gmail.com" style="color: var(--primary);">dramawallahcontact@gmail.com</a></p>
+
+                            <div style="margin-top: 30px; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 8px;">
+                                <p><strong>Last Updated:</strong> December 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
             
             <!-- Sidebar -->
@@ -843,15 +988,6 @@
                     <h3>Dramawallah</h3>
                     <p>Your ultimate destination for HD dramas and movies. Download or stream your favorite content in high quality.</p>
                 </div>
-                <div class="footer-column">
-    <h3>Legal</h3>
-    <ul>
-        <li><a href="/privacy">Privacy Policy</a></li>
-        <li><a href="/cookies">Cookie Policy</a></li>
-        <li><a href="/terms">Terms of Service</a></li>
-        <li><a href="/dmca">DMCA</a></li>
-    </ul>
-</div>
                 
                 <div class="footer-column">
                     <h3>Quick Links</h3>
@@ -859,6 +995,7 @@
                         <li><a href="#" class="nav-link" data-section="home">Home</a></li>
                         <li><a href="#" class="nav-link" data-section="ongoing">Ongoing Dramas</a></li>
                         <li><a href="#" class="nav-link" data-section="news">News</a></li>
+                        <li><a href="#" class="nav-link" data-section="privacy">Privacy Policy</a></li>
                     </ul>
                 </div>
                 
@@ -893,6 +1030,21 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="cookie-banner">
+        <div class="cookie-content">
+            <p class="cookie-text">
+                🍪 We use cookies to personalize content and ads, and to analyze our traffic. 
+                By continuing to use our site, you consent to our use of cookies.
+            </p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies" class="cookie-btn">Accept All</button>
+                <button id="reject-cookies" class="cookie-btn cookie-btn-secondary">Reject Non-Essential</button>
+                <a href="#" class="cookie-link" data-section="privacy">Learn More</a>
+            </div>
+        </div>
+    </div>
     
     <script>
         // Navigation between sections
@@ -989,6 +1141,38 @@
                 }
             }
             
+            // Cookie consent functionality
+            const cookieBanner = document.getElementById('cookie-consent');
+            const acceptBtn = document.getElementById('accept-cookies');
+            const rejectBtn = document.getElementById('reject-cookies');
+            
+            // Check if user has already made a choice
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    cookieBanner.style.display = 'block';
+                }, 1000);
+            }
+            
+            // Accept cookies
+            acceptBtn.addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'accepted');
+                cookieBanner.style.display = 'none';
+                // Initialize AdSense and other tracking here
+                initializeAdSense();
+            });
+            
+            // Reject non-essential cookies
+            rejectBtn.addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'rejected');
+                cookieBanner.style.display = 'none';
+                // Only load essential functionality (no ads)
+            });
+            
+            function initializeAdSense() {
+                // This is where you'll add AdSense code later
+                console.log('AdSense initialized - add your AdSense code here');
+            }
+            
             // Generate star ratings
             function generateStars(rating, maxRating = 10) {
                 const starRating = (rating / maxRating) * 5;
@@ -1022,62 +1206,8 @@
                 if (index < ratings.length) {
                     element.innerHTML = generateStars(ratings[index]);
                 }
-                <!-- Cookie Consent Banner -->
-<div id="cookie-consent" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #1a1f25; color: white; padding: 20px; box-shadow: 0 -2px 10px rgba(0,0,0,0.3); z-index: 1000; border-top: 2px solid #3a86ff;">
-    <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
-        <p style="margin: 0; flex: 1; min-width: 300px; font-size: 14px; line-height: 1.5;">
-            🍪 We use cookies to personalize content and ads, and to analyze our traffic. 
-            By continuing to use our site, you consent to our use of cookies.
-        </p>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <button id="accept-cookies" style="background: #3a86ff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: 600;">
-                Accept All
-            </button>
-            <button id="reject-cookies" style="background: transparent; color: #3a86ff; border: 1px solid #3a86ff; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 14px;">
-                Reject Non-Essential
-            </button>
-            <a href="/privacy" style="color: #3a86ff; text-decoration: none; padding: 10px 0; font-size: 14px; align-self: center;">
-                Learn More
-            </a>
-        </div>
-    </div>
-</div>
-
-<script>
-// Cookie consent functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const cookieBanner = document.getElementById('cookie-consent');
-    const acceptBtn = document.getElementById('accept-cookies');
-    const rejectBtn = document.getElementById('reject-cookies');
-    
-    // Check if user has already made a choice
-    if (!localStorage.getItem('cookieConsent')) {
-        setTimeout(() => {
-            cookieBanner.style.display = 'block';
-        }, 1000);
-    }
-    
-    // Accept cookies
-    acceptBtn.addEventListener('click', function() {
-        localStorage.setItem('cookieConsent', 'accepted');
-        cookieBanner.style.display = 'none';
-        // Initialize AdSense and other tracking here
-        initializeAdSense();
-    });
-    
-    // Reject non-essential cookies
-    rejectBtn.addEventListener('click', function() {
-        localStorage.setItem('cookieConsent', 'rejected');
-        cookieBanner.style.display = 'none';
-        // Only load essential functionality (no ads)
-    });
-    
-    function initializeAdSense() {
-        // This is where you'll add AdSense code later
-        console.log('AdSense initialized - add your AdSense code here');
-    }
-});
-</script>
-
+            });
+        });
+    </script>
 </body>
 </html>
