@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HD Dramas & Movies</title>
+    <title>Dramawallah - HD Dramas & Movies</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,54 +13,194 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        :root {
+            --primary: #3a86ff;
+            --secondary: #8338ec;
+            --dark: #0f1419;
+            --dark-light: #1a1f25;
+            --text: #e1e1e1;
+            --text-light: #a0aec0;
+        }
+        
         body {
-            background-color: #0f1419;
-            color: #e1e1e1;
-            padding: 20px;
+            background-color: var(--dark);
+            color: var(--text);
             line-height: 1.6;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
         
-        .header {
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #2a2f35;
+        /* Header Styles */
+        header {
+            background-color: var(--dark-light);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
-        .header h1 {
-            color: #ffffff;
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
             font-size: 28px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 24px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary);
+            background-color: rgba(58, 134, 255, 0.1);
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 8px 15px;
+            width: 300px;
+        }
+        
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            width: 100%;
+            padding: 5px 10px;
+            outline: none;
+        }
+        
+        .search-bar button {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .search-bar button:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 20, 25, 0.8), rgba(15, 20, 25, 0.9)), 
+                        url('https://images.unsplash.com/photo-1489599809505-f2e90e8e08c5?ixlib=rb-4.0.3') center/cover;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 25px;
+            color: var(--text-light);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
             font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(58, 134, 255, 0.3);
+        }
+        
+        /* Section Styles */
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+        
+        section {
+            padding: 50px 0;
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
         
         .card {
-            background-color: #1a1f25;
+            background-color: var(--dark-light);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            max-width: 320px;
-            margin: 0 auto;
         }
         
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
         
         .poster {
             width: 100%;
-            height: 180px;
+            height: 160px;
             background: linear-gradient(135deg, #2d3748, #4a5568);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #a0aec0;
-            font-size: 18px;
+            color: var(--text-light);
+            font-size: 16px;
             position: relative;
         }
         
@@ -74,7 +215,7 @@
         }
         
         .title {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 600;
             margin-bottom: 10px;
             color: #ffffff;
@@ -83,7 +224,7 @@
         .rating {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .stars {
@@ -94,7 +235,7 @@
         .star {
             color: #fbbf24;
             margin-right: 2px;
-            font-size: 18px;
+            font-size: 16px;
         }
         
         .rating-value {
@@ -103,11 +244,11 @@
         }
         
         .description {
-            color: #a0aec0;
-            font-size: 15px;
+            color: var(--text-light);
+            font-size: 14px;
             margin-bottom: 15px;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -116,31 +257,31 @@
             display: flex;
             align-items: center;
             color: #9ca3af;
-            font-size: 14px;
-            margin-bottom: 20px;
+            font-size: 13px;
+            margin-bottom: 15px;
         }
         
         .year, .quality, .size {
-            margin-right: 15px;
+            margin-right: 12px;
         }
         
         .quality {
             background-color: #2d3748;
             padding: 2px 8px;
             border-radius: 4px;
-            font-size: 12px;
+            font-size: 11px;
         }
         
         .download-btn {
             display: block;
             width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            padding: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             text-align: center;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -151,137 +292,498 @@
             transform: translateY(-2px);
         }
         
-        @media (min-width: 768px) {
-            .cards-container {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                gap: 25px;
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .news-card {
+            background-color: var(--dark-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, #2d3748, #4a5568);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        
+        .news-date {
+            color: var(--text-light);
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        
+        .news-excerpt {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-light);
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        .developer {
+            text-align: center;
+            margin-top: 10px;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
             }
             
-            .card {
-                max-width: 100%;
+            nav ul {
+                gap: 15px;
             }
+            
+            .search-bar {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .hero h2 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+        }
+        
+        /* Hidden sections */
+        .section {
+            display: none;
+        }
+        
+        .active-section {
+            display: block;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-film"></i>
+                    <h1>Dramawallah</h1>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#" class="nav-link active" data-section="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-section="ongoing">Ongoing</a></li>
+                        <li><a href="#" class="nav-link" data-section="news">News</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="Search movies, dramas...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>HD Dramas & Movies</h2>
+            <p>Discover the latest and greatest in entertainment. Stream or download your favorite shows in high quality.</p>
+            <a href="#" class="cta-button">Explore Now</a>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
     <div class="container">
-        <div class="header">
-            <h1>HD Dramas & Movies</h1>
-        </div>
+        <!-- Home Section -->
+        <section id="home" class="section active-section">
+            <h2 class="section-title">Latest Releases</h2>
+            <div class="cards-grid">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="poster"></div>
+                    <div class="content">
+                        <h3 class="title">The Last Kingdom</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">☆</span>
+                            </div>
+                            <span class="rating-value">8.4/10</span>
+                        </div>
+                        <p class="description">As Alfred the Great defends his kingdom from Norse invaders, Uhtred—born a Saxon but raised by Vikings—seeks to claim his ancestral birthright.</p>
+                        <div class="meta">
+                            <span class="year">2015</span>
+                            <span class="quality">HD</span>
+                            <span class="size">1.26 GB</span>
+                        </div>
+                        <button class="download-btn">Download Now</button>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="poster"></div>
+                    <div class="content">
+                        <h3 class="title">Stranger Things</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">☆</span>
+                            </div>
+                            <span class="rating-value">8.7/10</span>
+                        </div>
+                        <p class="description">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.</p>
+                        <div class="meta">
+                            <span class="year">2016</span>
+                            <span class="quality">4K</span>
+                            <span class="size">2.45 GB</span>
+                        </div>
+                        <button class="download-btn">Download Now</button>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="poster"></div>
+                    <div class="content">
+                        <h3 class="title">The Witcher</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">☆</span>
+                            </div>
+                            <span class="rating-value">8.2/10</span>
+                        </div>
+                        <p class="description">Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.</p>
+                        <div class="meta">
+                            <span class="year">2019</span>
+                            <span class="quality">HD</span>
+                            <span class="size">1.68 GB</span>
+                        </div>
+                        <button class="download-btn">Download Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-        <div class="cards-container">
-            <div class="card">
-                <div class="poster"></div>
-                <div class="content">
-                    <h2 class="title">The Last Kingdom</h2>
-                    <div class="rating">
-                        <div class="stars">
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
+        <!-- Ongoing Section -->
+        <section id="ongoing" class="section">
+            <h2 class="section-title">Ongoing Dramas</h2>
+            <div class="cards-grid">
+                <!-- Ongoing Card 1 -->
+                <div class="card">
+                    <div class="poster"></div>
+                    <div class="content">
+                        <h3 class="title">The Mandalorian</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <span class="rating-value">8.8/10</span>
                         </div>
-                        <span class="rating-value">8.4/10</span>
+                        <p class="description">The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic.</p>
+                        <div class="meta">
+                            <span class="year">2019</span>
+                            <span class="quality">4K</span>
+                            <span class="size">2.1 GB</span>
+                        </div>
+                        <button class="download-btn">Download Now</button>
                     </div>
-                    <p class="description">As Alfred the Great defends his kingdom from Norse invaders, Uhtred--born a Saxon but raised by Vikings--seeks to claim his ancestral birthright.</p>
-                    <div class="meta">
-                        <span class="year">2015</span>
-                        <span class="quality">HD</span>
-                        <span class="size">1.26 GB</span>
+                </div>
+                
+                <!-- Ongoing Card 2 -->
+                <div class="card">
+                    <div class="poster"></div>
+                    <div class="content">
+                        <h3 class="title">Loki</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">☆</span>
+                            </div>
+                            <span class="rating-value">8.2/10</span>
+                        </div>
+                        <p class="description">The mercurial villain Loki resumes his role as the God of Mischief in a new series that takes place after the events of "Avengers: Endgame."</p>
+                        <div class="meta">
+                            <span class="year">2021</span>
+                            <span class="quality">HD</span>
+                            <span class="size">1.5 GB</span>
+                        </div>
+                        <button class="download-btn">Download Now</button>
                     </div>
-                    <button class="download-btn">Download Now</button>
                 </div>
             </div>
-            
-            <div class="card">
-                <div class="poster"></div>
-                <div class="content">
-                    <h2 class="title">Stranger Things</h2>
-                    <div class="rating">
-                        <div class="stars">
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                        </div>
-                        <span class="rating-value">8.7/10</span>
+        </section>
+        
+        <!-- News Section -->
+        <section id="news" class="section">
+            <h2 class="section-title">Latest News</h2>
+            <div class="news-grid">
+                <!-- News 1 -->
+                <div class="news-card">
+                    <div class="news-image">NEWS IMAGE</div>
+                    <div class="news-content">
+                        <h3 class="news-title">New Season of Stranger Things Announced</h3>
+                        <div class="news-date">June 15, 2023</div>
+                        <p class="news-excerpt">Netflix has officially announced the release date for the final season of Stranger Things. Fans are excited to see how the story concludes.</p>
+                        <a href="#" class="read-more">Read More →</a>
                     </div>
-                    <p class="description">When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.</p>
-                    <div class="meta">
-                        <span class="year">2016</span>
-                        <span class="quality">4K</span>
-                        <span class="size">2.45 GB</span>
+                </div>
+                
+                <!-- News 2 -->
+                <div class="news-card">
+                    <div class="news-image">NEWS IMAGE</div>
+                    <div class="news-content">
+                        <h3 class="news-title">Upcoming Movie Releases in 2023</h3>
+                        <div class="news-date">June 10, 2023</div>
+                        <p class="news-excerpt">Check out our list of the most anticipated movie releases for the remainder of 2023, including major blockbusters and indie gems.</p>
+                        <a href="#" class="read-more">Read More →</a>
                     </div>
-                    <button class="download-btn">Download Now</button>
+                </div>
+                
+                <!-- News 3 -->
+                <div class="news-card">
+                    <div class="news-image">NEWS IMAGE</div>
+                    <div class="news-content">
+                        <h3 class="news-title">Streaming Services Comparison</h3>
+                        <div class="news-date">June 5, 2023</div>
+                        <p class="news-excerpt">We compare the top streaming services to help you decide which one is right for your entertainment needs and budget.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
                 </div>
             </div>
-            
-            <div class="card">
-                <div class="poster"></div>
-                <div class="content">
-                    <h2 class="title">The Witcher</h2>
-                    <div class="rating">
-                        <div class="stars">
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                            <span class="star">★</span>
-                        </div>
-                        <span class="rating-value">8.2/10</span>
-                    </div>
-                    <p class="description">Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.</p>
-                    <div class="meta">
-                        <span class="year">2019</span>
-                        <span class="quality">HD</span>
-                        <span class="size">1.68 GB</span>
-                    </div>
-                    <button class="download-btn">Download Now</button>
-                </div>
-            </div>
-        </div>
+        </section>
     </div>
-
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Dramawallah</h3>
+                    <p>Your ultimate destination for HD dramas and movies. Download or stream your favorite content in high quality.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Ongoing Dramas</a></li>
+                        <li><a href="#">Latest Movies</a></li>
+                        <li><a href="#">News</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Drama</a></li>
+                        <li><a href="#">Comedy</a></li>
+                        <li><a href="#">Thriller</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Report Issue</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Dramawallah. All rights reserved.</p>
+                <div class="developer">
+                    Developed by @bibegs [TG Account]
+                </div>
+            </div>
+        </div>
+    </footer>
+    
     <script>
-        // Function to generate star rating
-        function generateStars(rating, maxRating = 10) {
-            // Convert to 5-star scale
-            const starRating = (rating / maxRating) * 5;
-            const fullStars = Math.floor(starRating);
-            const hasHalfStar = starRating % 1 >= 0.5;
-            
-            let starsHTML = '';
-            
-            // Add full stars
-            for (let i = 0; i < fullStars; i++) {
-                starsHTML += '<span class="star">★</span>';
-            }
-            
-            // Add half star if needed
-            if (hasHalfStar) {
-                starsHTML += '<span class="star">★</span>';
-            }
-            
-            // Add empty stars
-            const totalStars = 5;
-            const emptyStars = totalStars - fullStars - (hasHalfStar ? 1 : 0);
-            for (let i = 0; i < emptyStars; i++) {
-                starsHTML += '<span class="star">☆</span>';
-            }
-            
-            return starsHTML;
-        }
-        
-        // Apply star ratings to all cards
+        // Navigation between sections
         document.addEventListener('DOMContentLoaded', function() {
-            const ratings = [8.4, 8.7, 8.2];
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and sections
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    sections.forEach(section => section.classList.remove('active-section'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    const sectionId = this.getAttribute('data-section');
+                    document.getElementById(sectionId).classList.add('active-section');
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.querySelector('.search-bar input');
+            const searchButton = document.querySelector('.search-bar button');
+            
+            searchButton.addEventListener('click', function() {
+                performSearch();
+            });
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            function performSearch() {
+                const query = searchInput.value.trim();
+                if (query) {
+                    alert(`Searching for: ${query}`);
+                    // In a real implementation, you would filter content based on the search query
+                }
+            }
+            
+            // Generate star ratings
+            function generateStars(rating, maxRating = 10) {
+                const starRating = (rating / maxRating) * 5;
+                const fullStars = Math.floor(starRating);
+                const hasHalfStar = starRating % 1 >= 0.5;
+                
+                let starsHTML = '';
+                
+                for (let i = 0; i < fullStars; i++) {
+                    starsHTML += '<span class="star">★</span>';
+                }
+                
+                if (hasHalfStar) {
+                    starsHTML += '<span class="star">★</span>';
+                }
+                
+                const totalStars = 5;
+                const emptyStars = totalStars - fullStars - (hasHalfStar ? 1 : 0);
+                for (let i = 0; i < emptyStars; i++) {
+                    starsHTML += '<span class="star">☆</span>';
+                }
+                
+                return starsHTML;
+            }
+            
+            // Apply star ratings to all cards
+            const ratings = [8.4, 8.7, 8.2, 8.8, 8.2];
             const ratingElements = document.querySelectorAll('.rating .stars');
             
             ratingElements.forEach((element, index) => {
-                element.innerHTML = generateStars(ratings[index]);
+                if (index < ratings.length) {
+                    element.innerHTML = generateStars(ratings[index]);
+                }
             });
         });
     </script>
