@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DramaWallah - Your Drama Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 20px 0;
+            padding: 40px;
+            color: white;
+        }
+        .drama-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            margin-bottom: 25px;
+            height: 100%;
+        }
+        .drama-card:hover {
+            transform: translateY(-5px);
+        }
+        .drama-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            background-color: #f8f9fa;
+        }
+        .telegram-btn {
+            background: #0088cc;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-block;
+        }
+        .telegram-btn:hover {
+            background: #0077b5;
+            color: white;
+        }
+        .search-box {
+            background: rgba(255,255,255,0.9);
+            border-radius: 50px;
+            padding: 12px 25px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <!-- Header -->
+        <div class="hero-section text-center">
+            <h1 class="display-4 fw-bold">🎬 DramaWallah</h1>
+            <p class="lead">Auto-updated via Telegram Bot • 100% Free Forever</p>
+            
+            <!-- Search Box -->
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-6">
+                    <input type="text" class="form-control search-box" 
+                           placeholder="🔍 Search dramas..." id="searchInput">
+                </div>
+            </div>
+        </div>
+
+        <!-- Drama Grid -->
+        <div class="row" id="dramaGrid">
+            <!-- Dramas will be loaded here by JavaScript -->
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-white mt-5">
+            <p>🤖 Auto-updated via Telegram Bot | 🌐 Free hosting by Netlify</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Load dramas from JSON file
+        fetch('./dramas.json')
+            .then(response => response.json())
+            .then(data => {
+                displayDramas(data.dramas);
+            })
+            .catch(error => {
+                console.error('Error loading dramas:', error);
+                document.getElementById('dramaGrid').innerHTML = 
+                    '<div class="col-12 text-center text-white"><p>No dramas loaded yet. Use /add_web in bot to add content.</p></div>';
+            });
+
+        function displayDramas(dramas) {
+            const dramaGrid = document.getElementById('dramaGrid');
+            
+            if (!dramas || dramas.length === 0) {
+                dramaGrid.innerHTML = '<div class="col-12 text-center text-white"><p>No dramas available yet. Check back later!</p></div>';
+                return;
+            }
+
+            let html = '';
+            dramas.forEach(drama => {
+                html += `
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="drama-card">
+                        <div class="drama-image" style="background-image: url('${drama.image_url || 'https://via.placeholder.com/300x200/667eea/white?text=No+Image'}')"></div>
+                        <div class="p-3">
+                            <h5 class="fw-bold">${drama.title}</h5>
+                            <p class="text-muted small">${drama.description || 'No description available.'}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">${formatDate(drama.added_date)}</small>
+                                <a href="${drama.channel_link}" class="telegram-btn" target="_blank">
+                                    📺 View Episodes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+            
+            dramaGrid.innerHTML = html;
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Recently added';
+            const date = new Date(dateString);
+            return date.toLocaleDateString();
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const dramaCards = document.querySelectorAll('.drama-card');
+            
+            dramaCards.forEach(card => {
+                const title = card.querySelector('h5').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.parentElement.style.display = 'block';
+                } else {
+                    card.parentElement.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
