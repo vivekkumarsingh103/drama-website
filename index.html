@@ -442,6 +442,28 @@
         .active-section {
             display: block;
         }
+        
+        /* Search Results */
+        .search-results {
+            margin-bottom: 30px;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+            font-size: 18px;
+        }
+        
+        .no-results i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -463,8 +485,8 @@
                 </nav>
                 
                 <div class="search-bar">
-                    <input type="text" placeholder="Search movies, dramas...">
-                    <button><i class="fas fa-search"></i></button>
+                    <input type="text" id="search-input" placeholder="Search movies, dramas...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
                 </div>
             </div>
         </div>
@@ -481,12 +503,25 @@
     
     <!-- Main Content -->
     <div class="container">
+        <!-- Search Results Section -->
+        <section id="search-results" class="section">
+            <h2 class="section-title">Search Results</h2>
+            <div id="search-results-container" class="cards-grid">
+                <!-- Search results will be dynamically inserted here -->
+            </div>
+            <div id="no-results" class="no-results hidden">
+                <i class="fas fa-search"></i>
+                <h3>No results found</h3>
+                <p>Try different keywords or browse our categories</p>
+            </div>
+        </section>
+        
         <!-- Home Section -->
         <section id="home" class="section active-section">
             <h2 class="section-title">Latest Releases</h2>
             <div class="cards-grid">
                 <!-- Card 1 -->
-                <div class="card">
+                <div class="card" data-title="The Last Kingdom" data-description="As Alfred the Great defends his kingdom from Norse invaders, Uhtred—born a Saxon but raised by Vikings—seeks to claim his ancestral birthright." data-year="2015" data-rating="8.4">
                     <div class="poster"></div>
                     <div class="content">
                         <h3 class="title">The Last Kingdom</h3>
@@ -511,7 +546,7 @@
                 </div>
                 
                 <!-- Card 2 -->
-                <div class="card">
+                <div class="card" data-title="Stranger Things" data-description="When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl." data-year="2016" data-rating="8.7">
                     <div class="poster"></div>
                     <div class="content">
                         <h3 class="title">Stranger Things</h3>
@@ -536,7 +571,7 @@
                 </div>
                 
                 <!-- Card 3 -->
-                <div class="card">
+                <div class="card" data-title="The Witcher" data-description="Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts." data-year="2019" data-rating="8.2">
                     <div class="poster"></div>
                     <div class="content">
                         <h3 class="title">The Witcher</h3>
@@ -567,7 +602,7 @@
             <h2 class="section-title">Ongoing Dramas</h2>
             <div class="cards-grid">
                 <!-- Ongoing Card 1 -->
-                <div class="card">
+                <div class="card" data-title="The Mandalorian" data-description="The travels of a lone bounty hunter in the outer reaches of the galaxy, far from the authority of the New Republic." data-year="2019" data-rating="8.8">
                     <div class="poster"></div>
                     <div class="content">
                         <h3 class="title">The Mandalorian</h3>
@@ -592,7 +627,7 @@
                 </div>
                 
                 <!-- Ongoing Card 2 -->
-                <div class="card">
+                <div class="card" data-title="Loki" data-description="The mercurial villain Loki resumes his role as the God of Mischief in a new series that takes place after the events of 'Avengers: Endgame.'" data-year="2021" data-rating="8.2">
                     <div class="poster"></div>
                     <div class="content">
                         <h3 class="title">Loki</h3>
@@ -701,10 +736,6 @@
                 <p>&copy; 2023 Dramawallah. All rights reserved.</p>
                 <div class="developer">
                     Developed by @bibegs [TG Account]
-                    This site dramawallah.netlify.app does not host any files on its servers.
-All files or contents hosted on third party websites.
-
-                     dramawallah.netlify.app does not accept responsibility for contents hosted on third party websites. We just index those links which are already available in internet
                 </div>
             </div>
         </div>
@@ -734,8 +765,12 @@ All files or contents hosted on third party websites.
             });
             
             // Search functionality
-            const searchInput = document.querySelector('.search-bar input');
-            const searchButton = document.querySelector('.search-bar button');
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+            const searchResultsSection = document.getElementById('search-results');
+            const searchResultsContainer = document.getElementById('search-results-container');
+            const noResultsMessage = document.getElementById('no-results');
+            const allCards = document.querySelectorAll('.card');
             
             searchButton.addEventListener('click', function() {
                 performSearch();
@@ -748,10 +783,42 @@ All files or contents hosted on third party websites.
             });
             
             function performSearch() {
-                const query = searchInput.value.trim();
-                if (query) {
-                    alert(`Searching for: ${query}`);
-                    // In a real implementation, you would filter content based on the search query
+                const query = searchInput.value.trim().toLowerCase();
+                
+                if (!query) {
+                    // If search is empty, show home section
+                    document.querySelector('.nav-link[data-section="home"]').click();
+                    return;
+                }
+                
+                // Hide all sections and show search results
+                sections.forEach(section => section.classList.remove('active-section'));
+                searchResultsSection.classList.add('active-section');
+                
+                // Update active nav link
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // Clear previous search results
+                searchResultsContainer.innerHTML = '';
+                
+                // Filter cards based on search query
+                const matchingCards = Array.from(allCards).filter(card => {
+                    const title = card.getAttribute('data-title').toLowerCase();
+                    const description = card.getAttribute('data-description').toLowerCase();
+                    const year = card.getAttribute('data-year');
+                    
+                    return title.includes(query) || description.includes(query) || year.includes(query);
+                });
+                
+                // Display search results
+                if (matchingCards.length > 0) {
+                    noResultsMessage.classList.add('hidden');
+                    matchingCards.forEach(card => {
+                        const cardClone = card.cloneNode(true);
+                        searchResultsContainer.appendChild(cardClone);
+                    });
+                } else {
+                    noResultsMessage.classList.remove('hidden');
                 }
             }
             
