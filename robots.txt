@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dramawallah.netlify.app/sitemap.xml
