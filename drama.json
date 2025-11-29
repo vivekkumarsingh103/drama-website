@@ -1,0 +1,20 @@
+{
+  "dramas": [
+    {
+      "id": "1",
+      "title": "W.H.Y: What Happened to Your Relationship",
+      "description": "A story about relationships and personal growth",
+      "channel_link": "https://t.me/your_channel/123",
+      "image_url": "https://via.placeholder.com/300x200/667eea/white?text=W.H.Y",
+      "added_date": "2024-01-15"
+    },
+    {
+      "id": "2",
+      "title": "100% Era",
+      "description": "Youth drama about dreams and ambitions",
+      "channel_link": "https://t.me/your_channel/124", 
+      "image_url": "https://via.placeholder.com/300x200/764ba2/white?text=100%25+Era",
+      "added_date": "2024-01-15"
+    }
+  ]
+}
