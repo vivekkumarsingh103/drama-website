@@ -1,165 +1,392 @@
-<!-- Add to your index.html head section -->
-<meta name="description" content="Download latest dramas, movies and series. Direct Telegram channel links. Updated daily.">
-<meta name="keywords" content="drama download, telegram dramas, korean drama, movies, series">
-<meta property="og:title" content="DramaWallah - Free Drama Library">
-<meta property="og:description" content="Thousands of dramas available for download via Telegram">
-<meta property="og:url" content="https://dramawallah.netlify.app">
-<meta property="og:type" content="website">
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="https://schema.org/WebSite">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DramaWallah - Your Drama Library</title>
+    <title>DramaWallah - Download HD Korean Dramas, Hollywood Movies & Web Series 2024</title>
+    
+    <!-- CRITICAL SEO META TAGS -->
+    <meta name="description" content="🎬 Download latest Korean dramas, Hollywood movies, web series in 1080p HD quality. Daily updates via Telegram. Fast downloads, no ads.">
+    <meta name="keywords" content="korean drama download, hollywood movies, web series, hd dramas, telegram channels, latest series, kdrama, bollywood movies">
+    <meta name="author" content="DramaWallah">
+    
+    <!-- OPEN GRAPH META TAGS (For Social Media Sharing) -->
+    <meta property="og:title" content="DramaWallah - HD Dramas & Movies Download">
+    <meta property="og:description" content="Download latest Korean dramas, Hollywood movies in 1080p HD. Updated daily via Telegram bot.">
+    <meta property="og:image" content="https://dramawallah.netlify.app/og-image.jpg">
+    <meta property="og:url" content="https://dramawallah.netlify.app">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DramaWallah">
+    
+    <!-- TWITTER CARD META TAGS -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DramaWallah - HD Dramas & Movies">
+    <meta name="twitter:description" content="Download latest dramas and movies in HD quality">
+    <meta name="twitter:image" content="https://dramawallah.netlify.app/twitter-image.jpg">
+    
+    <!-- SCHEMA.ORG STRUCTURED DATA (For Google) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DramaWallah",
+        "description": "Download HD Korean Dramas, Hollywood Movies & Web Series",
+        "url": "https://dramawallah.netlify.app",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://dramawallah.netlify.app/?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <!-- FAVICON AND APP ICONS -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- PRELOAD CRITICAL ASSETS -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .hero-section {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            margin: 20px 0;
-            padding: 40px;
-            color: white;
-        }
-        .drama-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-            margin-bottom: 25px;
-            height: 100%;
-        }
-        .drama-card:hover {
-            transform: translateY(-5px);
-        }
+        /* [KEEP ALL PREVIOUS STYLES BUT ADD THESE ENHANCEMENTS] */
+        
+        /* Image Loading Improvements */
         .drama-image {
-            height: 250px;
+            height: 280px;
             background-size: cover;
             background-position: center;
             background-color: #f8f9fa;
+            position: relative;
+            overflow: hidden;
         }
-        .telegram-btn {
-            background: #0088cc;
+        
+        .drama-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .drama-card:hover .drama-image::before {
+            opacity: 1;
+        }
+        
+        .image-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 14px;
-            display: inline-block;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
-        .telegram-btn:hover {
-            background: #0077b5;
-            color: white;
+        
+        /* Loading Animation */
+        .skeleton-loader {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
         }
-        .search-box {
-            background: rgba(255,255,255,0.9);
-            border-radius: 50px;
-            padding: 12px 25px;
-            border: none;
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Breadcrumb for SEO */
+        .breadcrumb {
+            background: transparent;
+            padding: 10px 0;
+            margin-bottom: 0;
+        }
+        
+        /* Rating Stars */
+        .rating {
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+        
+        /* Lazy Loading */
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lazy-image.loaded {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <div class="container py-5">
-        <!-- Header -->
-        <div class="hero-section text-center">
-            <h1 class="display-4 fw-bold">🎬 DramaWallah</h1>
-            <p class="lead">Auto-updated via Telegram Bot • 100% Free Forever</p>
-            
-            <!-- Search Box -->
-            <div class="row justify-content-center mt-4">
-                <div class="col-md-6">
-                    <input type="text" class="form-control search-box" 
-                           placeholder="🔍 Search dramas..." id="searchInput">
+    <!-- Schema.org Breadcrumb -->
+    <nav aria-label="breadcrumb" class="container mt-3">
+        <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="https://dramawallah.netlify.app" itemprop="item">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1">
+            </li>
+            <li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">HD Dramas & Movies</span>
+                <meta itemprop="position" content="2">
+            </li>
+        </ol>
+    </nav>
+
+    <!-- [KEEP ALL PREVIOUS HTML STRUCTURE BUT ENHANCE DRAMA CARDS] -->
+    
+    <!-- Enhanced Drama Card Template -->
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4" itemprop="itemListElement" itemscope itemtype="https://schema.org/CreativeWork">
+        <div class="drama-card">
+            <div class="drama-image lazy-image" 
+                 data-src="${drama.image_url}" 
+                 style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIi8+PC9zdmc+')"
+                 itemprop="image">
+                <div class="image-placeholder" style="display: none;">
+                    <i class="fas fa-film fa-2x"></i>
                 </div>
             </div>
-        </div>
-
-        <!-- Drama Grid -->
-        <div class="row" id="dramaGrid">
-            <!-- Dramas will be loaded here by JavaScript -->
-        </div>
-
-        <!-- Footer -->
-        <div class="text-center text-white mt-5">
-            <p>🤖 Auto-updated via Telegram Bot | 🌐 Free hosting by Netlify</p>
+            <div class="drama-content">
+                <h5 class="drama-title" itemprop="name">${drama.title}</h5>
+                
+                <!-- Rating -->
+                <div class="rating mb-2">
+                    ${generateStars(drama.rating || 4)}
+                    <small class="text-muted">(${drama.rating || 4}.0)</small>
+                </div>
+                
+                <p class="drama-description" itemprop="description">${drama.description}</p>
+                
+                <div class="drama-meta">
+                    <span class="drama-year" itemprop="copyrightYear">${drama.year}</span>
+                    <span class="drama-quality">${drama.quality} • ${drama.size || '1.2GB'}</span>
+                </div>
+                
+                <meta itemprop="datePublished" content="${drama.year}">
+                <meta itemprop="contentRating" content="PG-13">
+                
+                <a href="${drama.channel_link}" class="telegram-btn" target="_blank" rel="noopener noreferrer" itemprop="url">
+                    <i class="fab fa-telegram me-2"></i>Download Now
+                </a>
+            </div>
         </div>
     </div>
 
-    <!-- JavaScript -->
-    <script>
-        // Load dramas from JSON file
-        fetch('./dramas.json')
-            .then(response => response.json())
-            .then(data => {
-                displayDramas(data.dramas);
-            })
-            .catch(error => {
-                console.error('Error loading dramas:', error);
-                document.getElementById('dramaGrid').innerHTML = 
-                    '<div class="col-12 text-center text-white"><p>No dramas loaded yet. Use /add_web in bot to add content.</p></div>';
-            });
+    <!-- [REST OF YOUR HTML REMAINS SAME] -->
 
+    <!-- Enhanced JavaScript -->
+    <script>
+        // Schema.org for search
+        const websiteSchema = {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "DramaWallah",
+            "url": "https://dramawallah.netlify.app",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://dramawallah.netlify.app/?search={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        };
+
+        // Enhanced drama loading with lazy images
         function displayDramas(dramas) {
             const dramaGrid = document.getElementById('dramaGrid');
             
             if (!dramas || dramas.length === 0) {
-                dramaGrid.innerHTML = '<div class="col-12 text-center text-white"><p>No dramas available yet. Check back later!</p></div>';
+                showNoContentMessage();
                 return;
             }
 
             let html = '';
-            dramas.forEach(drama => {
-                html += `
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="drama-card">
-                        <div class="drama-image" style="background-image: url('${drama.image_url || 'https://via.placeholder.com/300x200/667eea/white?text=No+Image'}')"></div>
-                        <div class="p-3">
-                            <h5 class="fw-bold">${drama.title}</h5>
-                            <p class="text-muted small">${drama.description || 'No description available.'}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">${formatDate(drama.added_date)}</small>
-                                <a href="${drama.channel_link}" class="telegram-btn" target="_blank">
-                                    📺 View Episodes
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `;
+            dramas.forEach((drama, index) => {
+                html += createDramaCard(drama, index);
             });
             
             dramaGrid.innerHTML = html;
+            
+            // Initialize lazy loading after cards are created
+            initLazyLoading();
         }
 
-        function formatDate(dateString) {
-            if (!dateString) return 'Recently added';
-            const date = new Date(dateString);
-            return date.toLocaleDateString();
+        function createDramaCard(drama, index) {
+            return `
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4" itemprop="itemListElement" itemscope itemtype="https://schema.org/Movie">
+                <div class="drama-card">
+                    <div class="drama-image lazy-image" 
+                         data-src="${drama.image_url || `https://via.placeholder.com/300x400/2c3e50/ffffff?text=${encodeURIComponent(drama.title.substring(0, 20))}`}" 
+                         style="background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjhmOWZhIi8+PC9zdmc+')"
+                         itemprop="image">
+                    </div>
+                    <div class="drama-content">
+                        <h5 class="drama-title" itemprop="name">${drama.title}</h5>
+                        
+                        <div class="rating mb-2">
+                            ${generateStars(drama.rating || 4)}
+                            <small class="text-muted">(${drama.rating || 4}.0)</small>
+                        </div>
+                        
+                        <p class="drama-description" itemprop="description">${drama.description || 'Exciting drama with great storyline and characters.'}</p>
+                        
+                        <div class="drama-meta">
+                            <span class="drama-year" itemprop="copyrightYear">${drama.year || '2024'}</span>
+                            <span class="drama-quality">${drama.quality || 'HD'} • ${drama.size || '1.2GB'}</span>
+                        </div>
+                        
+                        <meta itemprop="datePublished" content="${drama.year || '2024'}">
+                        
+                        <a href="${drama.channel_link}" class="telegram-btn" target="_blank" rel="noopener noreferrer" itemprop="url">
+                            <i class="fab fa-telegram me-2"></i>Download on Telegram
+                        </a>
+                    </div>
+                </div>
+            </div>
+            `;
         }
 
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const halfStar = rating % 1 >= 0.5;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            if (halfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            for (let i = fullStars + (halfStar ? 1 : 0); i < 5; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        // Lazy Loading for Images
+        function initLazyLoading() {
+            const lazyImages = document.querySelectorAll('.lazy-image');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const src = img.getAttribute('data-src');
+                        
+                        // Create a new image to preload
+                        const tempImg = new Image();
+                        tempImg.src = src;
+                        tempImg.onload = () => {
+                            img.style.backgroundImage = `url('${src}')`;
+                            img.classList.add('loaded');
+                        };
+                        tempImg.onerror = () => {
+                            // If image fails to load, show placeholder
+                            const placeholder = document.createElement('div');
+                            placeholder.className = 'image-placeholder';
+                            placeholder.innerHTML = '<i class="fas fa-film fa-2x"></i>';
+                            img.appendChild(placeholder);
+                            placeholder.style.display = 'flex';
+                        };
+                        
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+
+        // Enhanced search with debouncing
+        let searchTimeout;
+        document.querySelector('.search-box').addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                performSearch(e.target.value);
+            }, 300);
+        });
+
+        function performSearch(searchTerm) {
             const dramaCards = document.querySelectorAll('.drama-card');
+            let visibleCount = 0;
             
             dramaCards.forEach(card => {
-                const title = card.querySelector('h5').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
+                const title = card.querySelector('.drama-title').textContent.toLowerCase();
+                const description = card.querySelector('.drama-description').textContent.toLowerCase();
                 
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                if (title.includes(searchTerm.toLowerCase()) || description.includes(searchTerm.toLowerCase())) {
                     card.parentElement.style.display = 'block';
+                    visibleCount++;
                 } else {
                     card.parentElement.style.display = 'none';
                 }
             });
+            
+            // Update search results count for SEO
+            updateSearchResultsCount(visibleCount, searchTerm);
+        }
+
+        function updateSearchResultsCount(count, term) {
+            // This helps with search analytics
+            if (term && window.gtag) {
+                gtag('event', 'search', {
+                    'search_term': term,
+                    'results_count': count
+                });
+            }
+        }
+
+        // Load dramas when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('./dramas.json')
+                .then(response => response.json())
+                .then(data => {
+                    displayDramas(data.dramas);
+                    // Add structured data for movie collection
+                    addMovieCollectionSchema(data.dramas);
+                })
+                .catch(error => {
+                    console.error('Error loading dramas:', error);
+                    showErrorMessage();
+                });
         });
+
+        function addMovieCollectionSchema(dramas) {
+            const movieCollectionSchema = {
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "name": "Latest Drama Collection",
+                "description": "Collection of latest Korean dramas and Hollywood movies",
+                "numberOfItems": dramas.length,
+                "itemListElement": dramas.map((drama, index) => ({
+                    "@type": "ListItem",
+                    "position": index + 1,
+                    "item": {
+                        "@type": "Movie",
+                        "name": drama.title,
+                        "description": drama.description,
+                        "image": drama.image_url,
+                        "datePublished": drama.year
+                    }
+                }))
+            };
+            
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(movieCollectionSchema);
+            document.head.appendChild(script);
+        }
     </script>
 </body>
 </html>
